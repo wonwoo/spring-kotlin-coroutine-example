@@ -19,10 +19,9 @@ class InitializerData(
     private val movieRepository: MovieRepository,
     private val reactiveMongoTemplate: ReactiveMongoTemplate
 
-
 ) : ApplicationRunner {
 
-    override fun run(args: ApplicationArguments?) {
+    override fun run(args: ApplicationArguments) {
         runBlocking {
             reactiveMongoTemplate.createCollection("history",
                 CollectionOptions.empty().size(1024).maxDocuments(5).capped()).awaitSingle()
